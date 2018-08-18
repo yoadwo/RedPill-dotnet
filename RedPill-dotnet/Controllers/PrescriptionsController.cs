@@ -10,8 +10,6 @@ namespace RedPill_dotnet.Controllers
 {
     public class PrescriptionsController : ApiController
     {
-        //<add name="RedPillEntities" connectionString="metadata=res://*/PrescriptionsDataModel.csdl|res://*/PrescriptionsDataModel.ssdl|res://*/PrescriptionsDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=YOAD\SQLEXPRESS;initial catalog=RedPill;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-        public const string PillProtocolPrefix = "FSPILLSEN@";
         public IEnumerable<Prescription> Get()
         {
             using (RedPillEntities entities = new RedPillEntities())
@@ -69,12 +67,5 @@ namespace RedPill_dotnet.Controllers
             
         }
 
-        private string PrescriptiontoQR(Prescription pre)
-        {
-            string info = pre.info;
-            int start = info.IndexOf(PillProtocolPrefix);
-            int length = PillProtocolPrefix.Length;
-            return info.Substring(start + length);
-        }
     }
 }

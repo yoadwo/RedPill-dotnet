@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedPill-dotnet", "RedPill-d
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedPill-dotnet.Tests", "RedPill-dotnet.Tests\RedPill-dotnet.Tests.csproj", "{70B2C21D-7537-4DD4-A43C-64DDB81E488D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrescriptionsDataAccess", "PrescriptionsDataAccess\PrescriptionsDataAccess.csproj", "{0B2656C9-FD53-45C4-9851-88328E1C1324}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{70B2C21D-7537-4DD4-A43C-64DDB81E488D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B2C21D-7537-4DD4-A43C-64DDB81E488D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B2C21D-7537-4DD4-A43C-64DDB81E488D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B2656C9-FD53-45C4-9851-88328E1C1324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B2656C9-FD53-45C4-9851-88328E1C1324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B2656C9-FD53-45C4-9851-88328E1C1324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B2656C9-FD53-45C4-9851-88328E1C1324}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

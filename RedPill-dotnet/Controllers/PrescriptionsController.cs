@@ -1,4 +1,5 @@
 ﻿using PrescriptionsDataAccess;
+using RedPill_dotnet.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace RedPill_dotnet.Controllers
 {
     public class PrescriptionsController : ApiController
     {
+        [BasicAuthentication]
         public IEnumerable<Prescription> Get()
         {
+            string docID = System.Threading.Thread.CurrentPrincipal.Identity.Name;
             using (RedPillEntities entities = new RedPillEntities())
             {
-                return entities.Prescriptions.ToList();
+                return entities.Prescriptions.Where(doc => doc.docID.Equals(docID)).ToList();
             }
         }
 

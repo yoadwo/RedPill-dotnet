@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RedPillDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RedPillDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="docID" />
+          </Key>
+          <Property Name="docID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="docFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="docLastName" Type="varchar" MaxLength="50" />
+          <Property Name="docCountry" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Prescriptions">
           <Key>
             <PropertyRef Name="recordID" />
@@ -17,10 +27,10 @@
           <Property Name="recordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityContainer Name="RedPillDBModelStoreContainer">
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prescriptions" EntityType="Self.Prescriptions" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RedPillDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -37,7 +47,18 @@
         </EntityType>
         <EntityContainer Name="RedPillEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
+          <EntitySet Name="Doctors" EntityType="RedPillDBModel.Doctor" />
         </EntityContainer>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="docID" />
+          </Key>
+          <Property Name="docID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -53,6 +74,17 @@
                 <ScalarProperty Name="timeAdded" ColumnName="timeAdded" />
                 <ScalarProperty Name="info" ColumnName="info" />
                 <ScalarProperty Name="recordID" ColumnName="recordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="RedPillDBModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="docCountry" ColumnName="docCountry" />
+                <ScalarProperty Name="docLastName" ColumnName="docLastName" />
+                <ScalarProperty Name="docFirstName" ColumnName="docFirstName" />
+                <ScalarProperty Name="docID" ColumnName="docID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

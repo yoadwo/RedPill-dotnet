@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7fa9d6cec3934f17862083f717baf643" Name="Diagram1">
         <EntityTypeShape EntityType="RedPillDBModel.Prescription" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RedPillDBModel.Doctor" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

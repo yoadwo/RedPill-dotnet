@@ -26,5 +26,6 @@ namespace PrescriptionsDataAccess
         }
     
         public virtual DbSet<Prescription> Prescriptions { get; set; }
+        public virtual DbSet<Doctor> Doctors { get; set; }
     }
 }

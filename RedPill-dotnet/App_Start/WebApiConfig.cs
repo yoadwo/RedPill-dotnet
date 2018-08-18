@@ -29,6 +29,9 @@ namespace RedPill_dotnet
                            Newtonsoft.Json.Formatting.Indented;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+
+            System.Web.Http.Cors.EnableCorsAttribute cors = new System.Web.Http.Cors.EnableCorsAttribute("*", "*", "GET,POST");
+            config.EnableCors();
         }
     }
 }

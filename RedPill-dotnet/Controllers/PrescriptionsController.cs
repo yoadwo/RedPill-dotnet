@@ -28,6 +28,11 @@ namespace RedPill_dotnet.Controllers
 
         public HttpResponseMessage Post([FromBody] Prescription pre)
         {
+            if (pre == null) {
+                var message = Request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                    "Prescription object could not be parsed, check request body");
+                return message;
+            }
             try
             {
                 using (RedPillEntities entities = new RedPillEntities())

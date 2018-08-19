@@ -37,7 +37,7 @@
 
     $('#btnClear').click(function () {
         console.log("clear");
-        $("#formList").find("input").each(function () {
+        $("#formTable").find("input").each(function () {
             $(this).val("");
             // working, but is it correct?
         });

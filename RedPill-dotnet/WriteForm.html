@@ -5,20 +5,57 @@
 	<title>Write a prescription</title>
 	<script src="Scripts/jquery-3.3.1.js"></script>
 	<script src="Scripts/RedPill/write.js"></script>
+	<link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
-<body>
-	<ul id="formList">
-		<li>Pill Name: <input type="text" id="txtName" value="" /> </li>
-		<li>Total Pills: <input type="text" id="txtTotalPills" value="" /> </li>
-		<li>Method of consumption: <input type="text" id="txtMethod" value="" /> </li>
-		<li>Frequency of consumption: <input type="text" id="txtFrequency" value="" /> </li>
-		<li>How many pills each dose: <input type="text" id="txtDose" value="" /> </li>
-		<li>Duration of consumption: <input type="text" id="txtDays" value="" /> </li>
-		<li>Comments: <input type="text" id="txtComments" size="40" value="" /> </li>
-
-	</ul>
-	<input id="btnWrite" type="button" value="send form" />
-	<input id="btnClear" type="button" value="clear form" />
+<body style="padding-top:20px">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="well">
+			<table id="formTable" class="table table-bordered">
+				<thead>
+					<tr class="success">
+						<td colspan="2">Enter Prescription</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Pill Name:</td>
+						<td><input type="text" id="txtName" size="60" value="" /></td>
+					</tr>
+					<tr>
+						<td>Total Pills:</td>
+						<td><input type="text" id="txtTotalPills" size="60" value="" /></td>
+					</tr>
+					<tr>
+						<td>Method of consumption:</td>
+						<td><input type="text" id="txtMethod" size="60" value="" /></td>
+					</tr>
+					<tr>
+						<td>Frequency of consumption:</td>
+						<td><input type="text" id="txtFrequency" size="60" value="" /></td>
+					</tr>
+					<tr>
+						<td>How many pills each dose:</td>
+						<td><input type="text" id="txtDose" size="60" value="" /></td>
+					</tr>
+					<tr>
+						<td>Duration of consumption:</td>
+						<td><input type="text" id="txtDays" size="60" value="" /></td>
+					</tr>
+					<tr>
+						<td>Comments:</td>
+						<td><input type="text" id="txtComments" size="60" value="" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<div align="center" class="success">
+				<input id="btnWrite" type="button" value="send form" class="btn btn-success" />
+				<input id="btnClear" type="button" value="clear form" class="btn btn-success" />
+			</div>
+		</div>
+		
+	</div>
+	<br />
+	
 	<br />
 	<img id="imgContainer" src="" />
 

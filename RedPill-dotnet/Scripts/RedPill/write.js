@@ -1,13 +1,13 @@
 ﻿$(document).ready(function () {
     var pillName = $('#txtName');
-    var totalPills = $('#txtTotalPills');
-    var textStatus = $('#txtStatus');
+    var formList = $('#formList');
     var imgContainer = $('#imgContainer');
-
+    
     $('#btnWrite').click(function () {
         var prescriptionEntry = {};
         prescriptionEntry.docID = 'a';
-        prescriptionEntry.info = JSON.stringify({ "name": pillName.val(), "totalPills": parseInt(totalPills.val()) });
+        //prescriptionEntry.info = JSON.stringify({ "name": pillName.val(), "totalPills": parseInt(totalPills.val()) });
+        prescriptionEntry.info = getInfo();
         prescriptionEntry.patientID = '12';
         prescriptionEntry.pillName = pillName.val();
         //datetime is added at server
@@ -37,9 +37,28 @@
 
     $('#btnClear').click(function () {
         console.log("clear");
-        pillName.val("");
-        totalPills.val("");
+        $("#formList").find("input").each(function () {
+            $(this).val("");
+            // working, but is it correct?
+        });
+        
         imgContainer.attr('src', "");
 
     });
+
+
 });
+
+function getInfo() {
+    jsonObj = {};
+    jsonObj.name = $('#txtName').val();
+    jsonObj.totalPills =  parseInt($('#txtTotalPills').val());  // int
+    jsonObj.each = parseInt($('#txtDose').val()); // int
+    jsonObj.method = $('#txtMethod').val();
+    jsonObj.frequency = $('#txtFrequency').val();
+    jsonObj.days = parseInt($('#txtDays').val()); // int
+    jsonObj.comments = $('#txtComments').val();
+
+    return JSON.stringify(jsonObj);
+}
+

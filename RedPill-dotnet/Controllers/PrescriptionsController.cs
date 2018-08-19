@@ -61,7 +61,7 @@ namespace RedPill_dotnet.Controllers
                 QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
                 QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(PILL_PREFIX + pre.info, QRCoder.QRCodeGenerator.ECCLevel.Q);
                 QRCoder.Base64QRCode qrCode = new QRCoder.Base64QRCode(qrCodeData);
-                string qrCodeImageAsBase64 = qrCode.GetGraphic(20);
+                string qrCodeImageAsBase64 = qrCode.GetGraphic(5);
                 message.Content = new StringContent(qrCodeImageAsBase64);
                 return message;
 

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿    using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +20,7 @@ namespace RedPill_dotnet
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
 
             // RedPill only works with JSON, so lets remove XML formatting
             config.Formatters.Remove(config.Formatters.XmlFormatter);

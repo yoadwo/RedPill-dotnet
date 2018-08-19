@@ -13,6 +13,7 @@ namespace RedPill_dotnet.Controllers
     {
 
         public const string PILL_PREFIX = "FSPILLSEN@";
+
         //[BasicAuthentication]
         public IEnumerable<Prescription> Get()
         {
@@ -24,11 +25,21 @@ namespace RedPill_dotnet.Controllers
             }
         }
 
-        public Prescription Get(int id)
+        //[Route("api/prescriptions/{id}")]
+        public IEnumerable<Prescription> GetPresByPatient(int id)
         {
             using (RedPillEntities entities = new RedPillEntities())
             {
-                return entities.Prescriptions.FirstOrDefault(p => p.recordID == id);
+                return entities.Prescriptions.Where(p => p.patientID.Equals (id.ToString())).ToList();
+            }
+        }
+
+        //[Route("api/prescriptions/{id}/pills")]
+        public IEnumerable<Prescription> GetPresByPillName(string pillName)
+        {
+            using (RedPillEntities entities = new RedPillEntities())
+            {
+                return entities.Prescriptions.Where(p => p.pillName.Equals(pillName)).ToList();
             }
         }
 

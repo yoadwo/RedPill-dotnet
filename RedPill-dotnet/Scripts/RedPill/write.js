@@ -8,7 +8,7 @@
         prescriptionEntry.docID = 'a';
         //prescriptionEntry.info = JSON.stringify({ "name": pillName.val(), "totalPills": parseInt(totalPills.val()) });
         prescriptionEntry.info = getInfo();
-        prescriptionEntry.patientID = '12';
+        prescriptionEntry.patientID = '14';
         prescriptionEntry.pillName = pillName.val();
         //datetime is added at server
         
@@ -27,8 +27,8 @@
             
             
         };
-        options.error = function (err) {
-            console.log("error");
+        options.error = function (jqXHR) {
+            console.log("error, " + jqXHR.responseText);
         };
 
         $.ajax(options);

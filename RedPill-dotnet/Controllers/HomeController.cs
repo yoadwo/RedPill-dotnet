@@ -11,7 +11,7 @@ namespace RedPill_dotnet.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            System.Diagnostics.Trace.WriteLine("In Home Controller");
             return View();
         }
     }

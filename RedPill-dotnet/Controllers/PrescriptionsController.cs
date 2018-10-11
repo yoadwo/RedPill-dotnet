@@ -14,9 +14,14 @@ namespace RedPill_dotnet.Controllers
 
         public const string PILL_PREFIX = "FSPILLSEN@";
 
-        //[BasicAuthentication]
+
+        /// <summary>
+        /// get a list of all existing prescriptions
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Prescription> Get()
         {
+            System.Diagnostics.Trace.WriteLine("In Precription Controller, GET");
             //string docID = System.Threading.Thread.CurrentPrincipal.Identity.Name;
             using (RedPillEntities entities = new RedPillEntities())
             {
@@ -25,16 +30,25 @@ namespace RedPill_dotnet.Controllers
             }
         }
 
-        //[Route("api/prescriptions/{id}")]
+        /// <summary>
+        /// get a list of all existing prescriptions that belong to a certain patient
+        /// </summary>
+        /// <param name="id">Patient ID</param>
+        /// <returns></returns>
         public IEnumerable<Prescription> GetPresByPatient(int id)
         {
+            System.Diagnostics.Trace.WriteLine("In Precription Controller, GET /{id}");
             using (RedPillEntities entities = new RedPillEntities())
             {
                 return entities.Prescriptions.Where(p => p.patientID.Equals (id.ToString())).ToList();
             }
         }
 
-        //[Route("api/prescriptions/{id}/pills")]
+        /// <summary>
+        /// get a list of all existing prescriptions under a certain pill name
+        /// </summary>
+        /// <param name="pillName">name of prescribed pill</param>
+        /// <returns></returns>
         public IEnumerable<Prescription> GetPresByPillName(string pillName)
         {
             using (RedPillEntities entities = new RedPillEntities())
@@ -43,9 +57,14 @@ namespace RedPill_dotnet.Controllers
             }
         }
 
+        /// <summary>
+        /// save prescription and receive its QR code
+        /// </summary>
+        /// <param name="pre">Prescription including doctor ID, patient ID, pill info and date given</param>
+        /// <returns></returns>
         public HttpResponseMessage Post([FromBody] Prescription pre)
         {
-            
+            System.Diagnostics.Trace.WriteLine("In Precription Controller, POST");
             if (pre == null) {
                 var message = Request.CreateErrorResponse(HttpStatusCode.BadRequest,
                     "Prescription object could not be parsed, check request body");
@@ -76,23 +95,6 @@ namespace RedPill_dotnet.Controllers
                 message.Content = new StringContent(qrCodeImageAsBase64);
                 return message;
 
-                #region bitmap
-                /*
-                QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
-                using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
-                {
-                    using (System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(10))
-                    {
-                        qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                    }
-
-                    // append to message the qr image
-                    message.Content = new ByteArrayContent(ms.ToArray());
-                    message.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/png");
-                }
-                return message;
-                */
-                #endregion
             }
             catch (Exception ex)
             {

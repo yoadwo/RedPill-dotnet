@@ -13,7 +13,7 @@
         //datetime is added at server
         
         var options = {};
-        options.url = 'api/prescriptions';
+        options.url = '../api/prescriptions';
         //options.url = 'http://redpill-dotnet.azurewebsites.net/api/prescriptions';
         options.type = 'POST';
         options.contentType = "application/json";

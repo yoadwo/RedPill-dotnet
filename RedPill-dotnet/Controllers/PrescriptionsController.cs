@@ -18,5 +18,10 @@ namespace RedPill_dotnet.Controllers
         {
             return View("ReadPres");
         }
+
+        public ActionResult Write()
+        {
+            return View("WritePres");
+        }
     }
 }

@@ -1,13 +1,16 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>Search Perscriptions</title>
-	<script src="Scripts/jquery-3.3.1.js"></script>
-	<script src="Scripts/RedPill/read.js"></script>
-	<link href="Content/bootstrap.css" rel="stylesheet" />
-</head>
-<body style="padding-top:20px">
+﻿@model PrescriptionsDataAccess.Prescription
+
+@{
+	ViewBag.Title = "ReadPres";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section myScripts
+{
+	<script src="@Url.Content("~/Scripts/RedPill/read.js")"></script>
+}
+
+
+<div style="padding-top:20px" class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<div class="well">
 			<table id="formTable" class="table table-bordered">
@@ -31,13 +34,10 @@
 			</table>
 			<div align="center" class="success">
 				<input id="btnClear" type="button" value="clear form" class="btn btn-success" />
+				<a class="btn btn-success" href='@Url.Action("Index","Home")'>home page</a>
 			</div>
 		</div>
-		<ul id="ulPrescriptions">
-
-		</ul>
+		<ul id="ulPrescriptions"></ul>
 	</div>
-	
-	
-</body>
-</html>
+</div>
+

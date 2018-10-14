@@ -88,7 +88,11 @@ namespace RedPill_dotnet.Controllers.api
         /// <returns></returns>
         public HttpResponseMessage Post([FromBody] Prescription pre)
         {
-            System.Diagnostics.Trace.WriteLine("In Precription Controller, POST");
+            // System.Diagnostics.Trace.WriteLine("In Precription Controller, POST");
+            var watchDB = System.Diagnostics.Stopwatch.StartNew();
+            var watchTotal = System.Diagnostics.Stopwatch.StartNew();
+            // the code that you want to measure comes here
+
             if (pre == null) {
                 var message = Request.CreateErrorResponse(HttpStatusCode.BadRequest,
                     "Prescription object could not be parsed, check request body");
@@ -110,6 +114,8 @@ namespace RedPill_dotnet.Controllers.api
                     // add info to server
                     entities.Prescriptions.Add(pre);
                     entities.SaveChanges();
+                    watchDB.Stop();
+                    
                 }
                 // create qr code
                 QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
@@ -117,14 +123,40 @@ namespace RedPill_dotnet.Controllers.api
                 QRCoder.Base64QRCode qrCode = new QRCoder.Base64QRCode(qrCodeData);
                 string qrCodeImageAsBase64 = qrCode.GetGraphic(5);
                 message.Content = new StringContent(qrCodeImageAsBase64);
+                watchTotal.Stop();
+
+                using (System.IO.StreamWriter w = System.IO.File.AppendText(System.Web.HttpContext.Current.Server.MapPath(@"~/Utils/log.txt")))
+                {
+                    Log("DB action took " + watchDB.ElapsedMilliseconds + "ms.", w);
+                    Log("Total action took " + watchTotal.ElapsedMilliseconds + "ms.", w);
+                }
+                
+                
                 return message;
 
             }
             catch (Exception ex)
             {
+                watchDB.Stop();
+                watchTotal.Stop();
+                using (System.IO.StreamWriter w = System.IO.File.AppendText(System.Web.HttpContext.Current.Server.MapPath(@"~/Utils/log.txt")))
+                {
+                    Log("Exception: " + ex.Message + ", DB action took " + watchDB.ElapsedMilliseconds + "ms.", w);
+                    Log("Exception: " + ex.Message + ", Total action took " + watchTotal.ElapsedMilliseconds + "ms.", w);
+                }
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
             
+        }
+
+        public static void Log(string logMessage, System.IO.TextWriter w)
+        {
+            w.Write("\r\nLog Entry : ");
+            w.Write("{0} {1}", DateTime.Now.ToLongTimeString(),
+                DateTime.Now.ToLongDateString());
+            w.WriteLine("  :");
+            w.WriteLine("{0}", logMessage);
+            w.WriteLine("-------------------------------");
         }
 
     }

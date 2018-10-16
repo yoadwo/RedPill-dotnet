@@ -2,10 +2,12 @@
 using RedPill_dotnet.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace RedPill_dotnet.Controllers.api
@@ -159,12 +161,12 @@ namespace RedPill_dotnet.Controllers.api
         /// </summary>
         /// <param name="pre">Prescription including doctor ID, patient ID, pill info and date given</param>
         /// <returns></returns>
-        public HttpResponseMessage Post([FromBody] Prescription pre)
+        public async Task<HttpResponseMessage> PostAsync([FromBody] Prescription pre)
         {
             // System.Diagnostics.Trace.WriteLine("In Precription Controller, POST");
-            var watchTotal = System.Diagnostics.Stopwatch.StartNew();
-            var watchDB = new System.Diagnostics.Stopwatch();
-            var watchQR = new System.Diagnostics.Stopwatch();
+            var watchTotal = Stopwatch.StartNew();
+            var watchDB = new Stopwatch();
+            var watchQR = new Stopwatch();
 
             // validate object received from Post rquest
             if (pre == null) {
@@ -180,8 +182,8 @@ namespace RedPill_dotnet.Controllers.api
 
                 // post results to server using entity framework (and measure time)
                 watchDB.Start();
-                SaveResultsToEF(pre);
-                watchDB.Stop();
+                //SaveResultsToEF(pre); // SYNC
+                Task taskDB = SaveResultsToEFAsync(pre, watchDB); 
 
                 // create response
                 var message = Request.CreateResponse(HttpStatusCode.Created, pre);
@@ -189,9 +191,10 @@ namespace RedPill_dotnet.Controllers.api
                 
                 // create qr code
                 watchQR.Start();
-                message.Content = GenerateQRImage(PILL_PREFIX + pre.info);
+                message.Content = GenerateQRImage(PILL_PREFIX + pre.info); // SYNC
                 watchQR.Stop();
-                
+
+                await taskDB;
                 watchTotal.Stop();
 
                 LogMessage(new string[] {
@@ -240,6 +243,23 @@ namespace RedPill_dotnet.Controllers.api
                 entities.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// save new prescription info to server - Async
+        /// </summary>
+        /// <param name="pre"></param>
+        private async Task SaveResultsToEFAsync(Prescription pre, Stopwatch stopwatch)
+        {
+            using (RedPillEntities entities = new RedPillEntities())
+            {
+                pre.timeAdded = DateTime.Now;
+                // add info to server
+                entities.Prescriptions.Add(pre);
+                await entities.SaveChangesAsync();
+            }
+            stopwatch.Stop();
+        }
+
 
         /// <summary>
         /// generate QR Barcode (as image) with info received from the client

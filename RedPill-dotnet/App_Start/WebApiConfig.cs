@@ -20,8 +20,7 @@ namespace RedPill_dotnet
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-
+            
             // RedPill only works with JSON, so lets remove XML formatting
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 

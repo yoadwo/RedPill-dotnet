@@ -217,3 +217,118 @@ DB action took 619ms.
 Total action took 623ms.
 
 -------------------------------
+
+Log Entry : 12:15:36 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 602ms.
+QR action took 307ms.
+Total action took 961ms.
+
+-------------------------------
+
+Log Entry : 12:16:06 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 2ms.
+QR action took 95ms.
+Total action took 97ms.
+
+-------------------------------
+
+Log Entry : 12:16:23 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 2ms.
+QR action took 112ms.
+Total action took 114ms.
+
+-------------------------------
+
+Log Entry : 12:18:26 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 735ms.
+QR action took 658ms.
+Total action took 1408ms.
+
+-------------------------------
+
+Log Entry : 12:18:42 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 1ms.
+QR action took 98ms.
+Total action took 101ms.
+
+-------------------------------
+
+Log Entry : 14:34:39 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 474ms.
+QR action took 233ms.
+Total action took 550ms.
+
+-------------------------------
+
+Log Entry : 14:34:55 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 7ms.
+QR action took 66ms.
+Total action took 69ms.
+
+-------------------------------
+
+Log Entry : 14:57:41 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 494ms.
+QR action took 201ms.
+Total action took 494ms.
+
+-------------------------------
+
+Log Entry : 14:57:57 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 64ms.
+QR action took 61ms.
+Total action took 64ms.
+
+-------------------------------
+
+Log Entry : 15:04:11 יום שלישי 16 אוקטובר 2018  :
+POST (WRITE PRESCRIPTIONS): SUCCESS
+DB action took 68ms.
+QR action took 67ms.
+Total action took 68ms.
+
+-------------------------------
+
+Log Entry : 17:45:43 יום שלישי 16 אוקטובר 2018  :
+GET (READ PRESCRIPTIONS by PatientID), SUCCESS
+DB action took 125ms.
+Total action took 126ms.
+
+-------------------------------
+
+Log Entry : 17:46:27 יום שלישי 16 אוקטובר 2018  :
+GET (READ PRESCRIPTIONS by PatientID), SUCCESS
+DB action took 6ms.
+Total action took 6ms.
+
+-------------------------------
+
+Log Entry : 17:46:46 יום שלישי 16 אוקטובר 2018  :
+GET (READ PRESCRIPTIONS by PatientID), SUCCESS
+DB action took 3ms.
+Total action took 3ms.
+
+-------------------------------
+
+Log Entry : 17:47:05 יום שלישי 16 אוקטובר 2018  :
+GET (READ PRESCRIPTIONS by PatientID), SUCCESS
+DB action took 3ms.
+Total action took 3ms.
+
+-------------------------------
+
+Log Entry : 17:47:15 יום שלישי 16 אוקטובר 2018  :
+GET (READ PRESCRIPTIONS by PatientID), SUCCESS
+DB action took 1ms.
+Total action took 1ms.
+
+-------------------------------

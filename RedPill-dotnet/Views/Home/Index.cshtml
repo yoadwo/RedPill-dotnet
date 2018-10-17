@@ -1,15 +1,24 @@
 ﻿<div class="jumbotron">
-	<h1>RedPill Client (ASP.NET)</h1>
-	<p class="lead">POC for RedPill, where doctors can append qr code to the prescriptions they write.</p>
+	<div class="row">
+		<div class="col-md-8">
+			<h1>RedPill</h1>
+			<p class="lead">POC for RedPill, where doctors can append qr code to the prescriptions they write.</p>
+		</div>
+		<div class="col-md-4">
+			<img id="superhero-profile" src="@ViewBag.imageUrl" alt="marvel superhero picture, Data provided by Marvel. © 2014 Marvel">
+			<p class="lead">Winners take their meds on time!</p>
+		</div>
+	</div>
+	
 	<!--<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>-->
 </div>
-<div class="row">
-    <div class="col-md-4">
+<div id="buttons_row" class="row" >
+    <div class="col-md-4" align="center">
         <h2>Write Prescription</h2>
         <p>Click here to fill prescription form.</p>
         <p><a class="btn btn-default" href='@Url.Action("Write","Prescriptions")'>Write Prescription &raquo;</a></p>
     </div>
-	<div class="col-md-4">
+	<div class="col-md-4" align="center">
 		<h2>Search Prescription</h2>
 		<p>Click here to search previous prescriptions given.</p>
 		<p><a class="btn btn-default" href = '@Url.Action("Read","Prescriptions")'>Search Previous Prescriptions &raquo;</a></p>

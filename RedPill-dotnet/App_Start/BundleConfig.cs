@@ -22,6 +22,9 @@ namespace RedPill_dotnet
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/RedPill").Include(
+                "~/Content/RedPill/index.css"
+                ));
         }
     }
 }
